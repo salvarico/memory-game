@@ -72,13 +72,13 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 44px;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 44px;
 }
 
 /*
@@ -106,4 +106,64 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.timer {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.modal_background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.438);
+}
+
+.modal_body {
+  position: relative;
+  width: 400px;
+  /* height: 400px; */
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  transform: translate(-50%, -70%);
+}
+
+.modal_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid gray;
+}
+
+.modal_close {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.modal_stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid gray;
+}
+
+.modal_buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.modal_button {
+  width: 60px;
+  height: 30px;
+}
+
+.hide {
+  display: none;
 }
