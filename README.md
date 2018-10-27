@@ -1,20 +1,18 @@
 # Memory Game Project
 
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This project is for the [Udacity Front-End Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). It's using HTML, CSS and Javascript (no framework).
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This game is about testing your memory skills. You will start with 16 cards faced down. Each of these cards contain a figure related with technology (or a cup of cofee). Each figure appears exactly in 2 cards for a total of 8 figures. The goal is to match each card with its pair. You can't have more than 2 unmatched cards faced up at a given time so whenever you turn a second card that has no match you will have to flip the 2 unmatched cards.
 
-To get started, open `js/app.js` and start building out the app's functionality
+To play the game just clone the repository and open index.html:
+```bash
+git clone https://github.com/salvarico/memory-game.git
+open index.html
+```
+or [click here]().
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## Dependencies
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+I used [Font Awesome](https://fontawesome.com/) for the figures, the stars and the redo icon in the project.
