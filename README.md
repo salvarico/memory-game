@@ -11,7 +11,7 @@ To play the game just clone the repository and open index.html:
 git clone https://github.com/salvarico/memory-game.git
 open index.html
 ```
-or [click here]().
+or [start playing online](https://salvarico.github.io/memory-game/).
 
 ## Dependencies
 
