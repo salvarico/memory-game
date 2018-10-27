@@ -19,4 +19,4 @@ I used [Font Awesome](https://fontawesome.com/) for the figures, the stars and t
 
 ## Credits
 
-All the code for modals is credited to [Matthew Canford](https://matthewcranford.com/), [@MatthewCanford](https://github.com/MatthewCranford).
+All the code for modals and the changeTimeFormat function is credited to [Matthew Canford](https://matthewcranford.com/), [@MatthewCanford](https://github.com/MatthewCranford).
