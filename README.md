@@ -16,3 +16,7 @@ or [start playing online](https://salvarico.github.io/memory-game/).
 ## Dependencies
 
 I used [Font Awesome](https://fontawesome.com/) for the figures, the stars and the redo icon in the project.
+
+## Credits
+
+All the code for modals is credited to [Matthew Canford](https://matthewcranford.com/), [@MatthewCanford](https://github.com/MatthewCranford).
