@@ -17,8 +17,9 @@ function shuffle(array) {
   return array;
 }
 
-// shuffle cards and change the DOM with this new info
+// shuffle cards and change the DOM with this new info by adding a class like fa-bitcoin from Font Awesome
 function shuffleCards() {
+  // shuffle the array of figures with each figure appearing twice
   const figureNamesShuffled = shuffle(figureNames.concat(figureNames));
   const figureElements = document.querySelectorAll('.card>i');
   figureElements.forEach(
@@ -31,6 +32,7 @@ function resetVariables() {
   unmatchedCardFacedUp = false, matches = 0, starRating = 3, time = 0, started = false, moves = 0;
 }
 
+// remove the classes from the figureElements and just keep the fa class
 function clearNameOfCards() {
   const figureElements = document.querySelectorAll('.card>i');
   figureElements.forEach(
@@ -50,7 +52,7 @@ function newGame() {
 }
 
 function resetMoves() {
-  document.querySelector('.moves').innerHTML = moves;
+  document.querySelector('.moves').innerHTML = 0;
 }
 
 function faceAllCardsDown() {
@@ -64,6 +66,7 @@ function faceAllCardsDown() {
 function resetStars() {
   let starElement;
   const starsContainer = document.querySelector('.stars');
+  // reset to 3 stars by taking one star element, cloning it and append it
   while (starsContainer.childElementCount < 3) {
     starElement = starsContainer.children[0];
     starsContainer.appendChild(starElement.cloneNode(true));
@@ -86,6 +89,7 @@ function changeTimeFormat(time) {
   }
 }
 
+// will continuously be changing the timer displayed in the webpage
 function startTiming() {
   started = true;
   timer = setInterval(timerFunc, 1000);
@@ -114,14 +118,11 @@ function getCardName(card) {
 }
 
 function updateAndChangeStarRating() {
-  if (moves === limitForOneStar || moves === limitForTwoStars) {
     removeStar();
     starRating--;
-  }
 }
 
-function updateDataAfterNewMatch() {
-  matches++;
+function flipMatchedCards() {
   firstUnmatchedCard.classList.remove('open', 'show');
   firstUnmatchedCard.classList.add('match');
   secondUnmatchedCard.classList.remove('open', 'show');
@@ -142,26 +143,33 @@ function cardClicked(event) {
   if (!started) {
     startTiming();
   }
+  // use the closest function to assure we get the cardElement and not another element inside
   cardElement = event.target.closest('.card');
+  // if the element wasn't found or it's a card already selected then do nothing
   if (!cardElement || cardAlreadySelected(cardElement)) {
     return;
   }
+  // check if there is another card already faced up
   if (!unmatchedCardFacedUp) {
     firstUnmatchedCard = cardElement;
     turnCardFacedUp(firstUnmatchedCard);
     unmatchedCardFacedUp = true;
   } else {
     secondUnmatchedCard = cardElement;
-    document.querySelector('.moves').innerHTML = ++moves;
     turnCardFacedUp(secondUnmatchedCard);
-    updateAndChangeStarRating();
+    document.querySelector('.moves').innerHTML = ++moves;
+    // update star rating if necessary
+    if (moves === limitForOneStar || moves === limitForTwoStars) updateAndChangeStarRating();
+    // check if both cards faced up have the same figure
     if (sameFigure(firstUnmatchedCard, secondUnmatchedCard)) {
-      updateDataAfterNewMatch();
+      matches++;
+      flipMatchedCards();
       if (matches == numOfFigures) {
         refreshModalData();
         toggleModal();
       }
     }
+    // if cards faced up don't have the same figure
     else {
       animateUnmatchedCards();
       firstUnmatchedCard.classList.remove('open', 'show');
@@ -180,21 +188,21 @@ function refreshModalData() {
   modalMoves.innerHTML = `Moves = ${moves}`;
 }
 
-function startGame() {
-  let restartElement;
-  deck.addEventListener('click', cardClicked);
-  restartElement = document.querySelector('.restart');
-  restartElement.addEventListener('click', newGame);
-  replayButton = document.querySelector('.modal_replay');
-  replayButton.addEventListener('click', () => {toggleModal(); newGame();});
-  cancelButton = document.querySelector('.modal_cancel');
-  cancelButton.addEventListener('click', () => {clearTimeout(timer); toggleModal();});
-  newGame();
-}
-
 function toggleModal() {
   const modal = document.querySelector('.modal_background');
   modal.classList.toggle('hide');
+}
+
+function startGame() {
+  deck.addEventListener('click', cardClicked);
+  // setting some buttons for the modal and restart buttons
+  const restartElement = document.querySelector('.restart');
+  restartElement.addEventListener('click', newGame);
+  const replayButton = document.querySelector('.modal_replay');
+  replayButton.addEventListener('click', () => {toggleModal(); newGame();});
+  const cancelButton = document.querySelector('.modal_cancel');
+  cancelButton.addEventListener('click', () => {clearTimeout(timer); toggleModal();});
+  newGame();
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
