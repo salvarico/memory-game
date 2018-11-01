@@ -165,8 +165,13 @@ function cardClicked(event) {
       matches++;
       flipMatchedCards();
       if (matches == NUM_OF_FIGURES) {
-        refreshModalData();
-        toggleModal();
+        // refreshModalData();
+        // toggleModal();
+        if (confirm("Would you like to play again?")) {
+          newGame();
+        } else {
+          clearTimeout(timer);
+        }
       }
     }
     // if cards faced up don't have the same figure
@@ -179,29 +184,29 @@ function cardClicked(event) {
   }
 }
 
-function refreshModalData() {
-  const modalTime = document.querySelector('.modal_time');
-  modalTime.innerHTML = `Time = ${changeTimeFormat(time)}`;
-  const modalStars = document.querySelector('.modal_stars');
-  modalStars.innerHTML = `Stars = ${starRating}`;
-  const modalMoves = document.querySelector('.modal_moves');
-  modalMoves.innerHTML = `Moves = ${moves}`;
-}
-
-function toggleModal() {
-  const modal = document.querySelector('.modal_background');
-  modal.classList.toggle('hide');
-}
+// function refreshModalData() {
+//   const modalTime = document.querySelector('.modal_time');
+//   modalTime.innerHTML = `Time = ${changeTimeFormat(time)}`;
+//   const modalStars = document.querySelector('.modal_stars');
+//   modalStars.innerHTML = `Stars = ${starRating}`;
+//   const modalMoves = document.querySelector('.modal_moves');
+//   modalMoves.innerHTML = `Moves = ${moves}`;
+// }
+//
+// function toggleModal() {
+//   const modal = document.querySelector('.modal_background');
+//   modal.classList.toggle('hide');
+// }
 
 function startGame() {
   deck.addEventListener('click', cardClicked);
   // setting some buttons for the modal and restart buttons
   const restartElement = document.querySelector('.restart');
   restartElement.addEventListener('click', newGame);
-  const replayButton = document.querySelector('.modal_replay');
-  replayButton.addEventListener('click', () => {toggleModal(); newGame();});
-  const cancelButton = document.querySelector('.modal_cancel');
-  cancelButton.addEventListener('click', () => {clearTimeout(timer); toggleModal();});
+  // const replayButton = document.querySelector('.modal_replay');
+  // replayButton.addEventListener('click', () => {toggleModal(); newGame();});
+  // const cancelButton = document.querySelector('.modal_cancel');
+  // cancelButton.addEventListener('click', () => {clearTimeout(timer); toggleModal();});
   newGame();
 }
 
