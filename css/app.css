@@ -21,6 +21,17 @@ body {
     font-family: 'Coda', cursive;
 }
 
+/* Catch all trick for avoiding overflowing containers */
+img, embed, object, video {
+  max-width: 100%;
+}
+
+/* Styles to avoid people mishitting buttons */
+nav a, button {
+  min-width: 48px;
+  min-height: 48px;
+}
+
 .container {
     display: flex;
     justify-content: center;
