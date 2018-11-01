@@ -1,7 +1,7 @@
 // declaring global variables
-let unmatchedCardFacedUp, firstUnmatchedCard, secondUnmatchedCard, matches, starRating, time, started, timer, numOfFigures = 8, moves, cardElement;
-const figureNames = ['fa-css3', 'fa-code', 'fa-bug', 'fa-bitcoin', 'fa-html5', 'fa-linux', 'fa-at', 'fa-git'];
-const limitForOneStar = 25, limitForTwoStars = 15;
+let unmatchedCardFacedUp, firstUnmatchedCard, secondUnmatchedCard, matches, starRating, time, started, timer, moves, cardElement;
+const FIGURE_NAMES = ['fa-css3', 'fa-code', 'fa-bug', 'fa-bitcoin', 'fa-html5', 'fa-linux', 'fa-at', 'fa-git'];
+const LIMIT_FOR_ONE_STAR = 25, LIMIT_FOR_TWO_STARS = 15, NUM_OF_FIGURES = 8;
 const deck = document.querySelector('.deck');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -20,7 +20,7 @@ function shuffle(array) {
 // shuffle cards and change the DOM with this new info by adding a class like fa-bitcoin from Font Awesome
 function shuffleCards() {
   // shuffle the array of figures with each figure appearing twice
-  const figureNamesShuffled = shuffle(figureNames.concat(figureNames));
+  const figureNamesShuffled = shuffle(FIGURE_NAMES.concat(FIGURE_NAMES));
   const figureElements = document.querySelectorAll('.card>i');
   figureElements.forEach(
     function(currentValue, currentIndex, listObj) {
@@ -37,7 +37,7 @@ function clearNameOfCards() {
   const figureElements = document.querySelectorAll('.card>i');
   figureElements.forEach(
     function(currentValue, currentIndex, listObj) {
-      currentValue.setAttribute("class", "fa");
+      currentValue.setAttribute('class', 'fa');
     });
 }
 
@@ -97,7 +97,7 @@ function startTiming() {
 
 function resetTimer() {
   clearTimeout(timer);
-  document.querySelector('.timer').innerHTML = "0:00";
+  document.querySelector('.timer').innerHTML = '0:00';
 }
 
 function removeStar() {
@@ -130,8 +130,8 @@ function flipMatchedCards() {
 }
 
 function animateUnmatchedCards() {
-  firstUnmatchedCard.animate({ transform: [ 'scale(1)', 'scale(1.2)', 'scale(1)' ], backgroundColor: ["#2e3d49","#f00"], fontSize: ["0px", "32px"] }, { duration: 1000, iterations: 1 });
-  secondUnmatchedCard.animate({ transform: [ 'scale(1)', 'scale(1.2)', 'scale(1)' ], backgroundColor: ["#2e3d49","#f00"], fontSize: ["0px", "32px"] }, { duration: 1000, iterations: 1 });
+  firstUnmatchedCard.animate({ transform: [ 'scale(1)', 'scale(1.2)', 'scale(1)' ], backgroundColor: ['#2e3d49','#f00'], fontSize: ['0px', '32px'] }, { duration: 1000, iterations: 1 });
+  secondUnmatchedCard.animate({ transform: [ 'scale(1)', 'scale(1.2)', 'scale(1)' ], backgroundColor: ['#2e3d49','#f00'], fontSize: ['0px', '32px'] }, { duration: 1000, iterations: 1 });
 }
 
 function sameFigure(firstUnmatchedCard, secondUnmatchedCard) {
@@ -159,12 +159,12 @@ function cardClicked(event) {
     turnCardFacedUp(secondUnmatchedCard);
     document.querySelector('.moves').innerHTML = ++moves;
     // update star rating if necessary
-    if (moves === limitForOneStar || moves === limitForTwoStars) updateAndChangeStarRating();
+    if (moves === LIMIT_FOR_ONE_STAR || moves === LIMIT_FOR_TWO_STARS) updateAndChangeStarRating();
     // check if both cards faced up have the same figure
     if (sameFigure(firstUnmatchedCard, secondUnmatchedCard)) {
       matches++;
       flipMatchedCards();
-      if (matches == numOfFigures) {
+      if (matches == NUM_OF_FIGURES) {
         refreshModalData();
         toggleModal();
       }
